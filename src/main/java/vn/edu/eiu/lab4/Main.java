@@ -1,17 +1,21 @@
 package vn.edu.eiu.lab4;
 
+import vn.edu.eiu.lab4.entity.Payment;
+import vn.edu.eiu.lab4.model.CardPayment;
+import vn.edu.eiu.lab4.model.EwalletPayment;
+import vn.edu.eiu.lab4.model.PaymentMethod;
+import vn.edu.eiu.lab4.service.PaymentService;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        PaymentMethod paymentMethod = new EwalletPayment();
+        PaymentService paymentService = new PaymentService(paymentMethod);
+        paymentService.processPayment(1, 200);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        PaymentMethod paymentMethod2 = new CardPayment();
+        PaymentService paymentService2 = new PaymentService(paymentMethod2);
+        paymentService2.processPayment(2, 150.5);
     }
 }
